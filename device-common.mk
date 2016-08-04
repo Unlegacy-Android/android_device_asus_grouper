@@ -84,6 +84,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/asus/grouper/sensors/sensors-load-calibration.sh:system/bin/sensors-load-calibration.sh
 
+PRODUCT_PACKAGES += \
+    sensors.grouper \
+    libinvensense_hal \
+    libmllite \
+    libmplmpu
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
