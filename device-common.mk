@@ -107,7 +107,10 @@ PRODUCT_PACKAGES += \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-    setup_fs
+   fsck.f2fs \
+   mkfs.f2fs \
+   e2fsck \
+   setup_fs
 
 # Media profiles
 PRODUCT_COPY_FILES += \
