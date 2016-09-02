@@ -42,7 +42,7 @@ BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
 WITH_DEXPREOPT_BOOT_IMG_ONLY := true
 
 # Kernel
-BOARD_KERNEL_CMDLINE := androidboot.hardware=$(TARGET_BOOTLOADER_BOARD_NAME)
+BOARD_KERNEL_CMDLINE := androidboot.hardware=$(TARGET_BOOTLOADER_BOARD_NAME) androidboot.selinux=permissive
 TARGET_KERNEL_CONFIG := grouper_defconfig
 TARGET_KERNEL_SOURCE := kernel/asus/grouper
 
