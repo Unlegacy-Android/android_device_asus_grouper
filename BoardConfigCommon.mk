@@ -25,6 +25,9 @@ TARGET_BOOTLOADER_BOARD_NAME := grouper
 # Avoid the generation of ldrcc instructions
 NEED_WORKAROUND_CORTEX_A9_745320 := true
 
+# Recovery fstab
+TARGET_RECOVERY_FSTAB = device/asus/grouper/rootdir/fstab.grouper
+
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
