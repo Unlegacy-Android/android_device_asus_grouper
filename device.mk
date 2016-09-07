@@ -26,5 +26,3 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.carrier=wifi-only
 
-DEVICE_PACKAGE_OVERLAYS += \
-    device/asus/grouper/overlay

@@ -119,6 +119,10 @@ PRODUCT_COPY_FILES += \
     device/asus/grouper/media/media_profiles.xml:system/etc/media_profiles.xml \
     device/asus/grouper/media/media_codecs.xml:system/etc/media_codecs.xml
 
+# Common grouper overlays
+DEVICE_PACKAGE_OVERLAYS += \
+    device/asus/grouper/overlay
+
 # Vendor blobs
 $(call inherit-product, vendor/asus/grouper/asus-vendor.mk)
 $(call inherit-product, vendor/broadcom/grouper/broadcom-vendor.mk)
