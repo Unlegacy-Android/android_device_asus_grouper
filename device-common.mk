@@ -112,6 +112,16 @@ PRODUCT_PACKAGES += \
     fsck.f2fs \
     mkfs.f2fs
 
+# Shell
+ifneq ($(filter eng userdebug,$(TARGET_BUILD_VARIANT)),)
+PRODUCT_PACKAGES += \
+    Terminal
+endif
+
+# Launcher3
+PRODUCT_PACKAGES += \
+    Launcher3
+
 # Media profiles
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
