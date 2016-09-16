@@ -18,3 +18,4 @@ BOARD_HAS_NO_REAL_SDCARD := true
 RECOVERY_SDCARD_ON_DATA := true
 TW_NO_USB_STORAGE := false
 TW_INCLUDE_L_CRYPTO := true
+TW_CUSTOM_BATTERY_PATH := /sys/class/power_supply/bq27541-0
