@@ -28,6 +28,12 @@ $(call inherit-product, vendor/omni/config/common_tablet.mk)
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/asus/grouper/aosp_grouper.mk)
 
+# Inherit recovery grouper-board definitions
+$(call inherit-product, device/asus/grouper/recovery.mk)
+
+PRODUCT_COPY_FILES += \
+	device/asus/grouper/twrp.fstab:recovery/root/etc/twrp.fstab
+
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := omni_grouper
 PRODUCT_DEVICE := grouper
@@ -35,12 +41,3 @@ PRODUCT_BRAND := Google
 PRODUCT_MODEL := Nexus 7
 PRODUCT_MANUFACTURER := Asus
 PRODUCT_RESTRICT_VENDOR_FILES := false
-
-# TWRP
-TW_THEME := portrait_hdpi
-BOARD_HAS_NO_REAL_SDCARD := true
-RECOVERY_SDCARD_ON_DATA := true
-TW_NO_USB_STORAGE := false
-TW_INCLUDE_L_CRYPTO := true
-PRODUCT_COPY_FILES += \
-	device/asus/grouper/twrp.fstab:recovery/root/etc/twrp.fstab
