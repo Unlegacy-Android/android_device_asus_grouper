@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac7a964_3994cb36",
+        "filename": "libsensors_iio/software/core/mllite/linux/ml_stored_data.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2016-09-23T22:49:58Z",
+      "side": 1,
+      "message": "Is this path correct, isn\u0027t this file on /per partition? or is this file created on demand after calibration?",
+      "revId": "96eb87c233513bccf860761eb0b7566e63886f6f",
+      "serverId": "d5e41ece-075f-43fb-b5a6-48951f3d7b1d",
+      "unresolved": false
+    }
+  ]
+}
