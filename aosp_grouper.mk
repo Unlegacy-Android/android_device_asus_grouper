@@ -21,6 +21,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 PRODUCT_NAME   := aosp_grouper
 PRODUCT_DEVICE := grouper
-PRODUCT_BRAND  := Google
+PRODUCT_BRAND  := google
 PRODUCT_MODEL  := Nexus 7
 PRODUCT_MANUFACTURER := Asus
