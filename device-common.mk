@@ -122,5 +122,5 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, vendor/asus/grouper/asus-vendor.mk)
 $(call inherit-product, vendor/broadcom/grouper/broadcom-vendor.mk)
 $(call inherit-product, vendor/invensense/grouper/invensense-vendor.mk)
-$(call inherit-product, vendor/nvidia/grouper/nvidia-vendor.mk)
+$(call inherit-product, vendor/nvidia/tegra3/nvidia-vendor.mk)
 $(call inherit-product-if-exists, vendor/widevine/arm-generic/widevine-vendor.mk)
