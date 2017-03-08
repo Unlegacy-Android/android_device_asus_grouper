@@ -38,7 +38,7 @@ BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=$(TARGET_BOOTLOADER_BOARD_NAME)
 TARGET_KERNEL_CONFIG := grouper_defconfig
-TARGET_KERNEL_SOURCE := kernel/asus/grouper
+TARGET_KERNEL_SOURCE := kernel/nvidia/tegra3
 
 # Wi-Fi
 BOARD_WLAN_DEVICE           := bcmdhd
