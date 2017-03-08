@@ -49,7 +49,7 @@ USE_CLANG_PLATFORM_BUILD := true
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=$(TARGET_BOOTLOADER_BOARD_NAME)
 TARGET_KERNEL_CONFIG := grouper_defconfig
-TARGET_KERNEL_SOURCE := kernel/asus/grouper
+TARGET_KERNEL_SOURCE := kernel/nvidia/tegra3
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 
