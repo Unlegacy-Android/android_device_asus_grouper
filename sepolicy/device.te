@@ -1,3 +1,0 @@
-type knv_device, dev_type;
-type nvhost_device, dev_type;
-type pmqos_device, dev_type;

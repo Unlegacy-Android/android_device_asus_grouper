@@ -1,4 +1,5 @@
-import init.grouper.power.rc
+import init.tegra3.rc
+
 import init.grouper.sensors.rc
 import init.grouper.usb.rc
 
@@ -137,11 +138,3 @@ service gpsd /vendor/bin/gpsd -c /system/etc/gps.xml
 on property:sys.shutdown.requested=1recovery
     start recoveryd
 
-service tf_daemon /system/bin/tf_daemon -storageDir /data/tf -d
-    class main
-    user root
-    group shell
-
-# tf_daemon may restart due to /data/tf not existing yet
-on property:init.svc.tf_daemon=restarting
-    mkdir /data/tf
