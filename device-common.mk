@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+$(call inherit-product, hardware/nvidia/tegra3/tegra3.mk)
+
 PRODUCT_CHARACTERISTICS := tablet,nosdcard
 
 PRODUCT_AAPT_CONFIG := normal
@@ -76,9 +78,7 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330
 # HALs
 PRODUCT_PACKAGES += \
     audio.primary.grouper \
-    keystore.grouper \
-    lights.grouper \
-    power.grouper
+    lights.grouper
 
 # Sensors
 PRODUCT_COPY_FILES += \
@@ -101,11 +101,6 @@ PRODUCT_PACKAGES += \
     NfcNxp \
     Tag
 
-# Security
-PRODUCT_PACKAGES += \
-    libtf_crypto_sst \
-    tf_daemon
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     fsck.f2fs \
@@ -125,12 +120,8 @@ PRODUCT_COPY_FILES += \
     device/asus/grouper/media/media_profiles.xml:system/etc/media_profiles.xml \
     device/asus/grouper/media/media_codecs.xml:system/etc/media_codecs.xml
 
-PRODUCT_PACKAGES += \
-    libstagefrighthw
-
 # Vendor blobs
 $(call inherit-product, vendor/asus/grouper/asus-vendor.mk)
 $(call inherit-product, vendor/broadcom/grouper/broadcom-vendor.mk)
 $(call inherit-product, vendor/invensense/grouper/invensense-vendor.mk)
 $(call inherit-product, vendor/nvidia/grouper/nvidia-vendor.mk)
-$(call inherit-product-if-exists, vendor/widevine/arm-generic/widevine-vendor.mk)
