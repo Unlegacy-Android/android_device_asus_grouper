@@ -12,13 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TARGET_BOARD_PLATFORM := tegra3
-
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_VARIANT := cortex-a9
+include hardware/nvidia/tegra3/BoardConfigCommon.mk
 
 TARGET_BOOTLOADER_BOARD_NAME := grouper
 
@@ -57,5 +51,4 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/asus/grouper/bluetooth
 
 # Security
-BOARD_USES_SECURE_SERVICES := true
 BOARD_SEPOLICY_DIRS += device/asus/grouper/sepolicy
