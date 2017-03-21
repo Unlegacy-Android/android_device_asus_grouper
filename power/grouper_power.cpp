@@ -76,7 +76,7 @@ static struct hw_module_methods_t power_module_methods = {
 struct power_module HAL_MODULE_INFO_SYM = {
     common: {
         tag: HARDWARE_MODULE_TAG,
-        module_api_version: POWER_MODULE_API_VERSION_0_3,
+        module_api_version: POWER_MODULE_API_VERSION_0_5,
         hal_api_version: HARDWARE_HAL_API_VERSION,
         id: POWER_HARDWARE_MODULE_ID,
         name: "Grouper Power HAL",

@@ -271,8 +271,29 @@ void common_power_hint(__attribute__ ((unused)) struct power_module *module,
                                                  DEFAULT_MIN_ONLINE_CPUS,
                                                  ms2ns(2000));
         break;
-	case POWER_HINT_LOW_POWER:
-		break;
+#ifdef ANDROID_API_LP_OR_LATER
+    case POWER_HINT_LOW_POWER:
+        break;
+    case POWER_HINT_SUSTAINED_PERFORMANCE:
+        break;
+    case POWER_HINT_VR_MODE:
+        break;
+    case POWER_HINT_LAUNCH:
+        if (pInfo->ftrace_enable) {
+            sysfs_write("/sys/kernel/debug/tracing/trace_marker", "Start POWER_HINT_LAUNCH\n");
+        }
+        // Bump cur_freq to max_frequency for 500ms
+        pInfo->mTimeoutPoker->requestPmQosTimed("/dev/cpu_freq_min",
+                                                 pInfo->max_frequency,
+                                                 ms2ns(500));
+        // Keeps a minimum of 2 cores online for 500ms
+        pInfo->mTimeoutPoker->requestPmQosTimed("/dev/min_online_cpus",
+                                                 DEFAULT_MIN_ONLINE_CPUS,
+                                                 ms2ns(500));
+        break;
+    case POWER_HINT_DISABLE_TOUCH:
+        break;
+#endif
     default:
         ALOGE("Unknown power hint: 0x%x", hint);
         break;
