@@ -204,12 +204,35 @@ void common_power_init(__attribute__ ((unused)) struct power_module *module,
     ALOGI("Boosting cpu_freq_min to %d for 60 seconds to make boot faster", pInfo->max_frequency);
 }
 
-void common_power_set_interactive(__attribute__ ((unused)) struct power_module *module,
-        struct powerhal_info *pInfo, int on)
+void set_input_devices_state(struct powerhal_info *pInfo, int on)
 {
     int i;
     int dev_id;
     char path[80];
+
+    if (0 != pInfo) {
+      for (i = 0; i < pInfo->input_cnt; i++) {
+        if (0 == pInfo->input_devs)
+          dev_id = i;
+        else if (-1 == pInfo->input_devs[i].dev_id)
+          continue;
+        else
+          dev_id = pInfo->input_devs[i].dev_id;
+        snprintf(path, sizeof(path), "/sys/class/input/input%d/enabled", dev_id);
+        if (!access(path, W_OK)) {
+          if (0 == on)
+            ALOGI("Disabling input device:%d", dev_id);
+          else
+            ALOGI("Enabling input device:%d", dev_id);
+          sysfs_write(path, state);
+        }
+      }
+    }
+}
+
+void common_power_set_interactive(__attribute__ ((unused)) struct power_module *module,
+        struct powerhal_info *pInfo, int on)
+{
     const char* state = (0 == on)?"0":"1";
     const char* lp_state = (on)?"1":"0";
     const char* gov = (on == 0)?"conservative":"interactive";
@@ -220,24 +243,7 @@ void common_power_set_interactive(__attribute__ ((unused)) struct power_module *
     sysfs_write("/sys/devices/platform/host1x/nvavp/boost_sclk", state);
     ALOGI("Setting boost_sclk %s", state);
 
-    if (0 != pInfo) {
-        for (i = 0; i < pInfo->input_cnt; i++) {
-            if (0 == pInfo->input_devs)
-                dev_id = i;
-            else if (-1 == pInfo->input_devs[i].dev_id)
-                continue;
-            else
-                dev_id = pInfo->input_devs[i].dev_id;
-            snprintf(path, sizeof(path), "/sys/class/input/input%d/enabled", dev_id);
-            if (!access(path, W_OK)) {
-                if (0 == on)
-                    ALOGI("Disabling input device:%d", dev_id);
-                else
-                    ALOGI("Enabling input device:%d", dev_id);
-                sysfs_write(path, state);
-            }
-        }
-    }
+    set_input_devices_state(pInfo, on);
 
     sysfs_write("/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor", gov);
     ALOGI("Setting scaling_governor to %s", gov);
@@ -271,8 +277,29 @@ void common_power_hint(__attribute__ ((unused)) struct power_module *module,
                                                  DEFAULT_MIN_ONLINE_CPUS,
                                                  ms2ns(2000));
         break;
-	case POWER_HINT_LOW_POWER:
-		break;
+#ifdef ANDROID_API_LP_OR_LATER
+    case POWER_HINT_LOW_POWER:
+        break;
+    case POWER_HINT_SUSTAINED_PERFORMANCE:
+        break;
+    case POWER_HINT_VR_MODE:
+        break;
+    case POWER_HINT_LAUNCH:
+        if (pInfo->ftrace_enable) {
+            sysfs_write("/sys/kernel/debug/tracing/trace_marker", "Start POWER_HINT_LAUNCH\n");
+        }
+        // Bump cur_freq to max_frequency for 500ms
+        pInfo->mTimeoutPoker->requestPmQosTimed("/dev/cpu_freq_min",
+                                                 pInfo->max_frequency,
+                                                 ms2ns(500));
+        // Keeps a minimum of 2 cores online for 500ms
+        pInfo->mTimeoutPoker->requestPmQosTimed("/dev/min_online_cpus",
+                                                 DEFAULT_MIN_ONLINE_CPUS,
+                                                 ms2ns(500));
+        break;
+    case POWER_HINT_DISABLE_TOUCH:
+        break;
+#endif
     default:
         ALOGE("Unknown power hint: 0x%x", hint);
         break;
