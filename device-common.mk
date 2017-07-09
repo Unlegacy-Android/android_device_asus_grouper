@@ -101,6 +101,11 @@ PRODUCT_PACKAGES += \
     NfcNxp \
     Tag
 
+# Camera HAL
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    media.stagefright.legacyencoder=true \
+    media.stagefright.less-secure=true
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     fsck.f2fs \
