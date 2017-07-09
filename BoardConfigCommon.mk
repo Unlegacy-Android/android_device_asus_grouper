@@ -68,3 +68,8 @@ BOARD_HAL_STATIC_LIBRARIES := libdumpstate.grouper
 
 # Security
 BOARD_SEPOLICY_DIRS += device/asus/grouper/sepolicy
+
+# Set HAL1 to fix loading the camera, due to old libnvodm_{query,imager}.so
+TARGET_USES_MEDIA_EXTENSIONS := true
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
