@@ -68,3 +68,8 @@ BOARD_HAL_STATIC_LIBRARIES := libdumpstate.grouper
 
 # Security
 BOARD_SEPOLICY_DIRS += device/asus/grouper/sepolicy
+
+# Camera
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+TARGET_NEEDS_PLATFORM_TEXTRELS := true
+
