@@ -78,9 +78,9 @@ PRODUCT_PACKAGES += \
 WIFI_BAND := 802_11_BG
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
 
-# HALs
+# Lights
 PRODUCT_PACKAGES += \
-    audio.primary.grouper \
+    android.hardware.light@2.0-impl \
     lights.grouper
 
 # Sensors
@@ -89,6 +89,9 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
+    audio.primary.grouper \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default
