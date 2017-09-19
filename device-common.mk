@@ -69,6 +69,7 @@ PRODUCT_PACKAGES += \
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
     libwpa_client \
     hostapd \
     wificond \
@@ -79,10 +80,10 @@ PRODUCT_PACKAGES += \
 WIFI_BAND := 802_11_BG
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
 
-# HALs
+# Lights
 PRODUCT_PACKAGES += \
-    audio.primary.grouper \
-    lights.grouper
+    lights.grouper \
+    android.hardware.light@2.0-impl
 
 # Sensors
 PRODUCT_COPY_FILES += \
@@ -90,9 +91,12 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
+    audio.primary.grouper \
     audio.a2dp.default \
     audio.usb.default \
-    audio.r_submix.default
+    audio.r_submix.default \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl
 
 PRODUCT_COPY_FILES += \
     device/asus/grouper/audio/audio_policy.conf:system/etc/audio_policy.conf \
