@@ -40,6 +40,9 @@ MALLOC_SVELTE := true
 # Use clang platform builds
 USE_CLANG_PLATFORM_BUILD := true
 
+# HIDL manifest
+DEVICE_MANIFEST_FILE := device/asus/grouper/manifest.xml
+
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=$(TARGET_BOOTLOADER_BOARD_NAME)
 TARGET_KERNEL_CONFIG := grouper_defconfig
