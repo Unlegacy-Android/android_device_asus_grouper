@@ -112,7 +112,6 @@ PRODUCT_PACKAGES += \
     android.hardware.nfc@1.0-impl \
     nfc.grouper \
     libpn544_fw \
-    NfcNxp \
     Tag
 
 # USB
