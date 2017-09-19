@@ -29,6 +29,9 @@ PRODUCT_COPY_FILES += \
     device/asus/grouper/rootdir/init.grouper.usb.rc:root/init.grouper.usb.rc \
     device/asus/grouper/rootdir/ueventd.grouper.rc:root/ueventd.grouper.rc
 
+# HIDL
+DEVICE_MANIFEST_FILE += device/asus/grouper/manifest.xml
+
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
