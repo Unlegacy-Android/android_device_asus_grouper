@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ad5045f_33df97fa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2017-10-07T09:43:14Z",
+      "side": 1,
+      "message": "bluetooth: Use custom vendor config",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 43
+      },
+      "revId": "20560bb1e8ef30066bb651ca4b23b1eaa84b344f",
+      "serverId": "d5e41ece-075f-43fb-b5a6-48951f3d7b1d",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a9c9183a_68eb1c0a",
+        "filename": "BoardConfigCommon.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2017-10-07T09:43:14Z",
+      "side": 1,
+      "message": "I\u0027d move this up a line. I found that diff anchors better within chunks of text that\u0027s unlikely to change (compared to whitespace). It also looks better ;-)",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 71
+      },
+      "revId": "20560bb1e8ef30066bb651ca4b23b1eaa84b344f",
+      "serverId": "d5e41ece-075f-43fb-b5a6-48951f3d7b1d",
+      "unresolved": false
+    }
+  ]
+}
