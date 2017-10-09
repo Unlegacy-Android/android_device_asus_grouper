@@ -85,6 +85,16 @@ int LightSensor::setDelay(int32_t handle __unused, int64_t ns)
     return -1;
 }
 
+int LightSensor::batch(int handle, int flags __unused, int64_t period_ns, int64_t timeout __unused)
+{
+    return setDelay(handle, period_ns);
+}
+
+int LightSensor::flush(int handle __unused)
+{
+    return -EINVAL;
+}
+
 int LightSensor::enable(int32_t handle __unused, int en)
 {
     int flags = en ? 1 : 0;
