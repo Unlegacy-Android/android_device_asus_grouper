@@ -196,3 +196,8 @@ int SensorBase::batch(int handle __unused, int flags __unused,
 {
     return 0;
 }
+
+int SensorBase::flush(int handle  __unused)
+{
+    return 0;
+}
