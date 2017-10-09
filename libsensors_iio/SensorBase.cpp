@@ -44,7 +44,7 @@ bool SensorBase::INPUT_DATA = false;
 bool SensorBase::HANDLER_DATA = false;
 
 SensorBase::SensorBase(const char* dev_name,
-                       const char* data_name) 
+                       const char* data_name)
                         : dev_name(dev_name),
                                                 data_name(data_name),
                                                 dev_fd(-1),
@@ -127,7 +127,7 @@ int SensorBase::getFd() const
 
 int SensorBase::setDelay(int32_t handle __unused, int64_t ns __unused)
 {
-    return 0;
+    return -EINVAL;
 }
 
 bool SensorBase::hasPendingEvents() const
@@ -186,13 +186,18 @@ int SensorBase::openInput(const char *inputName)
     return fd;
 }
 
-int SensorBase::enable(int32_t handle  __unused, int enabled  __unused)
+int SensorBase::enable(int32_t handle __unused, int enabled __unused)
 {
-    return 0;
+    return -EINVAL;
 }
 
 int SensorBase::batch(int handle __unused, int flags __unused,
     int64_t period_ns __unused, int64_t timeout __unused)
 {
-    return 0;
+    return -EINVAL;
+}
+
+int SensorBase::flush(int handle __unused)
+{
+    return -EINVAL;
 }

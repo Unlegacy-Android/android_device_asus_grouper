@@ -95,6 +95,8 @@ public:
     virtual int enable(int32_t handle, int enabled);
     virtual int batch(int handle __unused, int flags __unused,
         int64_t period_ns __unused, int64_t timeout __unused);
+    virtual int flush(int handle __unused);
+
 };
 
 /*****************************************************************************/
