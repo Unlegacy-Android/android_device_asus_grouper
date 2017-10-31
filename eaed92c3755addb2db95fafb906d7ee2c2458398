@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "acbdaa73_5251709b",
+        "filename": "libsensors/LightSensor.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2017-10-31T14:23:29Z",
+      "side": 1,
+      "message": "I\u0027d just use __unused for these, like on L100",
+      "revId": "eaed92c3755addb2db95fafb906d7ee2c2458398",
+      "serverId": "d5e41ece-075f-43fb-b5a6-48951f3d7b1d",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b34d8d28_f5359ab8",
+        "filename": "libsensors_iio/SensorBase.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2017-10-31T14:23:29Z",
+      "side": 1,
+      "message": "extra space",
+      "range": {
+        "startLine": 200,
+        "startChar": 33,
+        "endLine": 200,
+        "endChar": 34
+      },
+      "revId": "eaed92c3755addb2db95fafb906d7ee2c2458398",
+      "serverId": "d5e41ece-075f-43fb-b5a6-48951f3d7b1d",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4364811_39bb975c",
+        "filename": "libsensors_iio/SensorBase.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2017-10-31T14:23:29Z",
+      "side": 1,
+      "message": "extra newline",
+      "revId": "eaed92c3755addb2db95fafb906d7ee2c2458398",
+      "serverId": "d5e41ece-075f-43fb-b5a6-48951f3d7b1d",
+      "unresolved": false
+    }
+  ]
+}
