@@ -74,6 +74,9 @@ on boot
     chown gps system /dev/ttyHS1
     chmod 0660 /dev/ttyHS1
 
+# Wifi firmware reload path
+    chown wifi wifi /sys/module/bcmdhd/parameters/firmware_path
+
 on property:sys.boot_completed=1
     # IO - default mmc queue settings
     write /sys/block/mmcblk0/queue/scheduler bfq
