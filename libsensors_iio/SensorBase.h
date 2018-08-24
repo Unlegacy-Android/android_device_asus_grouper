@@ -67,11 +67,11 @@ public:
     static bool HANDLER_DATA;      /* log the data fetched from the handlers */
 
 protected:
-    const char *dev_name;
-    const char *data_name;
-    char input_name[PATH_MAX];
-    int dev_fd;
-    int data_fd;
+    const char* dev_name;
+    const char* data_name;
+    char        input_name[PATH_MAX];
+    int         dev_fd;
+    int         data_fd;
 
     int openInput(const char* inputName);
     static int64_t getTimestamp();
@@ -92,9 +92,9 @@ public:
     virtual bool hasPendingEvents() const;
     virtual int getFd() const;
     virtual int setDelay(int32_t handle, int64_t ns);
-    virtual int enable(int32_t handle, int enabled);
-    virtual int batch(int handle __unused, int flags __unused,
-        int64_t period_ns __unused, int64_t timeout __unused);
+    virtual int enable(int32_t handle, int enabled) = 0;
+    virtual int batch(int handle, int flags, int64_t period_ns, int64_t timeout);
+    virtual int flush(int handle);
 };
 
 /*****************************************************************************/
