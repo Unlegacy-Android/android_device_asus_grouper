@@ -38,5 +38,9 @@
 /dev/video1     0660    media   camera
 /dev/spdif*     0660    system  audio
 
+/dev/ttyUSB*    0660    radio    system
+/dev/ttyHS1     0664    root     system
+/dev/ttyHS2     0660    bluetooth   bluetooth
+
 #for FM V4L2 Radio
 /dev/radio      0666    system  radio
