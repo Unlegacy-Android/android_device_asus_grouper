@@ -27,7 +27,6 @@
 /dev/max_online_cpus	0660	system	system
 
 # Device specific stuff
-/dev/pn544      0660    nfc     nfc
 /dev/ov2710     0660    media   camera
 /dev/mi1040     0660    media   camera
 /dev/tegra_camera 0660  media   camera
@@ -37,6 +36,10 @@
 /dev/video0     0660    media   camera
 /dev/video1     0660    media   camera
 /dev/spdif*     0660    system  audio
+
+/dev/ttyUSB*    0660    radio    system
+/dev/ttyHS1     0664    root     system
+/dev/ttyHS2     0660    bluetooth   bluetooth
 
 #for FM V4L2 Radio
 /dev/radio      0666    system  radio
