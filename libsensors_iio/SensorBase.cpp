@@ -23,7 +23,11 @@
 #include <string.h>
 #include <dirent.h>
 #include <sys/select.h>
+
 #include <cutils/log.h>
+
+#include <utils/SystemClock.h>
+
 #include <linux/input.h>
 
 #include <cutils/properties.h>
@@ -33,9 +37,9 @@
 /*****************************************************************************/
 
 // static vars
-bool SensorBase::PROCESS_VERBOSE = false;
-bool SensorBase::EXTRA_VERBOSE = false;
-bool SensorBase::SYSFS_VERBOSE = false;
+bool SensorBase::PROCESS_VERBOSE = true;
+bool SensorBase::EXTRA_VERBOSE = true;
+bool SensorBase::SYSFS_VERBOSE = true;
 
 bool SensorBase::FUNC_ENTRY = false;
 bool SensorBase::HANDLER_ENTRY = false;
@@ -125,22 +129,16 @@ int SensorBase::getFd() const
     return data_fd;
 }
 
-int SensorBase::setDelay(int32_t handle __unused, int64_t ns __unused)
-{
+int SensorBase::setDelay(int32_t handle  __unused, int64_t ns  __unused) {
     return 0;
 }
 
-bool SensorBase::hasPendingEvents() const
-{
+bool SensorBase::hasPendingEvents() const {
     return false;
 }
 
-int64_t SensorBase::getTimestamp()
-{
-    struct timespec t;
-    t.tv_sec = t.tv_nsec = 0;
-    clock_gettime(CLOCK_MONOTONIC, &t);
-    return int64_t(t.tv_sec) * 1000000000LL + t.tv_nsec;
+int64_t SensorBase::getTimestamp() {
+    return android::elapsedRealtimeNano();
 }
 
 int SensorBase::openInput(const char *inputName)
@@ -188,11 +186,16 @@ int SensorBase::openInput(const char *inputName)
 
 int SensorBase::enable(int32_t handle  __unused, int enabled  __unused)
 {
-    return 0;
+    return -EINVAL;
 }
 
 int SensorBase::batch(int handle __unused, int flags __unused,
     int64_t period_ns __unused, int64_t timeout __unused)
 {
-    return 0;
+    return setDelay(handle, period_ns);
+}
+
+int SensorBase::flush(int handle __unused)
+{
+    return -EINVAL;
 }
