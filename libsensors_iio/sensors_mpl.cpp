@@ -92,7 +92,8 @@ struct sensors_poll_context_t {
     int pollEvents(sensors_event_t* data, int count);
     int query(int what, int *value);
     int batch(int handle, int flags, int64_t period_ns, int64_t timeout);
-    
+    int flush(int handle);
+ 
 private:
     enum {
         mpl = 0,
@@ -243,9 +244,15 @@ int sensors_poll_context_t::batch(int handle, int flags, int64_t period_ns, int6
     return mSensor->batch(handle, flags, period_ns, timeout);
 }
 
+int sensors_poll_context_t::flush(int handle)
+{
+    FUNC_LOG;
+    return mSensor->flush(handle);
+}
+
 /******************************************************************************/
 
-static int poll__close(struct hw_device_t *dev)
+static int device__close(struct hw_device_t *dev)
 {
     FUNC_LOG;
     sensors_poll_context_t *ctx = (sensors_poll_context_t *)dev;
@@ -255,14 +262,14 @@ static int poll__close(struct hw_device_t *dev)
     return 0;
 }
 
-static int poll__activate(struct sensors_poll_device_t *dev,
+static int device__activate(struct sensors_poll_device_t *dev,
                           int handle, int enabled)
 {
     sensors_poll_context_t *ctx = (sensors_poll_context_t *)dev;
     return ctx->activate(handle, enabled);
 }
 
-static int poll__setDelay(struct sensors_poll_device_t *dev,
+static int device__setDelay(struct sensors_poll_device_t *dev,
                           int handle, int64_t ns)
 {
     sensors_poll_context_t *ctx = (sensors_poll_context_t *)dev;
@@ -270,25 +277,32 @@ static int poll__setDelay(struct sensors_poll_device_t *dev,
     return s;
 }
 
-static int poll__poll(struct sensors_poll_device_t *dev,
+static int device__poll(struct sensors_poll_device_t *dev,
                       sensors_event_t* data, int count)
 {
     sensors_poll_context_t *ctx = (sensors_poll_context_t *)dev;
     return ctx->pollEvents(data, count);
 }
 
-static int poll__query(struct sensors_poll_device_1 *dev,
+static int device__query(struct sensors_poll_device_1 *dev,
                       int what, int *value)
 {
     sensors_poll_context_t *ctx = (sensors_poll_context_t *)dev;
     return ctx->query(what, value);
 }
 
-static int poll__batch(struct sensors_poll_device_1 *dev,
+static int device__batch(struct sensors_poll_device_1 *dev,
                       int handle, int flags, int64_t period_ns, int64_t timeout)
 {
     sensors_poll_context_t *ctx = (sensors_poll_context_t *)dev;
     return ctx->batch(handle, flags, period_ns, timeout);
+}
+
+static int device__flush(struct sensors_poll_device_1 *dev, int handle)
+{
+    FUNC_LOG;
+    sensors_poll_context_t* ctx = (sensors_poll_context_t*) dev;
+    return ctx->flush(handle);
 }
 
 /******************************************************************************/
@@ -304,15 +318,16 @@ static int open_sensors(const struct hw_module_t* module, const char* id __unuse
     memset(&dev->device, 0, sizeof(sensors_poll_device_1));
 
     dev->device.common.tag = HARDWARE_DEVICE_TAG;
-    dev->device.common.version  = SENSORS_DEVICE_API_VERSION_1_0;
+    dev->device.common.version  = SENSORS_DEVICE_API_VERSION_1_3;
     dev->device.common.module   = const_cast<hw_module_t*>(module);
-    dev->device.common.close    = poll__close;
-    dev->device.activate        = poll__activate;
-    dev->device.setDelay        = poll__setDelay;
-    dev->device.poll            = poll__poll;
+    dev->device.common.close    = device__close;
+    dev->device.activate        = device__activate;
+    dev->device.setDelay        = device__setDelay;
+    dev->device.poll            = device__poll;
 
     /* Batch processing */
-    dev->device.batch           = poll__batch; 
+    dev->device.batch           = device__batch; 
+    dev->device.flush           = device__flush; 
 
     *device = &dev->device.common;
     status = 0;

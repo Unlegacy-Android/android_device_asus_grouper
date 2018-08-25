@@ -143,4 +143,3 @@ PRODUCT_COPY_FILES += \
 # Vendor blobs
 $(call inherit-product, vendor/asus/grouper/asus-vendor.mk)
 $(call inherit-product, vendor/broadcom/grouper/broadcom-vendor.mk)
-$(call inherit-product, vendor/invensense/grouper/invensense-vendor.mk)

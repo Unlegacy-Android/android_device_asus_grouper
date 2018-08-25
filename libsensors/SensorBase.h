@@ -24,12 +24,51 @@
 
 #include "sensors.h"
 
+#if defined ANDROID_JELLYBEAN
+//build for Jellybean
+#define LOGV_IF ALOGV_IF
+#define LOGE_IF ALOGE_IF
+#define LOGI_IF ALOGI_IF
+#define LOGI    ALOGI
+#define LOGE    ALOGE
+#define LOGV    ALOGV
+#define LOGW    ALOGW
+#else
+//build for ICS or earlier version
+#endif
+
+#define FUNC_LOG \
+            LOGV("%s", __PRETTY_FUNCTION__)
+#define VFUNC_LOG \
+            LOGV_IF(SensorBase::FUNC_ENTRY, \
+                    "Entering function '%s'", __PRETTY_FUNCTION__)
+#define VHANDLER_LOG \
+            LOGV_IF(SensorBase::HANDLER_ENTRY, \
+                    "Entering handler '%s'", __PRETTY_FUNCTION__)
+#define CALL_MEMBER_FN(pobject, ptrToMember) ((pobject)->*(ptrToMember))
+
+#define MAX_SYSFS_NAME_LEN  (100)
+#define IIO_BUFFER_LENGTH   (480)
+
 
 /*****************************************************************************/
 
 struct sensors_event_t;
 
 class SensorBase {
+public:
+    /* Log enablers, each of these independent */
+    static bool PROCESS_VERBOSE;   /* process log messages */
+    static bool EXTRA_VERBOSE;     /* verbose log messages */
+    static bool SYSFS_VERBOSE;     /* log sysfs interactions as cat/echo for 
+                                      repro purpose on a shell */
+    /* Note that enabling this logs may affect performance */
+    static bool FUNC_ENTRY;        /* log entry in all one-time functions */
+    static bool HANDLER_ENTRY;     /* log entry in all handler functions */
+    static bool ENG_VERBOSE;       /* log a lot more info about the internals */
+    static bool INPUT_DATA;        /* log the data input from the events */
+    static bool HANDLER_DATA;      /* log the data fetched from the handlers */
+
 protected:
     const char* dev_name;
     const char* data_name;

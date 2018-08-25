@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-#define LOG_NDEBUG 0
+#define LOG_NDEBUG 1
 
 //see also the EXTRA_VERBOSE define in the MPLSensor.h header file
 
@@ -105,44 +105,44 @@ static int hertz_request = 200;
 
 static struct sensor_t sSensorList[] =
 {
-    {"MPL Gyroscope", "Invensense", 1,
-     SENSORS_GYROSCOPE_HANDLE,
-     SENSOR_TYPE_GYROSCOPE, 2000.0f, 1.0f, 0.5f, 10000, 0, 0, 0, 0, 0, 0, {}},
-    {"MPL Raw Gyroscope", "Invensense", 1,
-     SENSORS_RAW_GYROSCOPE_HANDLE,
-     SENSOR_TYPE_GYROSCOPE_UNCALIBRATED, 2000.0f, 1.0f, 0.5f, 10000, 0, 0, 0, 0, 0, 0, {}},
-    {"MPL Accelerometer", "Invensense", 1,
-     SENSORS_ACCELERATION_HANDLE,
-     SENSOR_TYPE_ACCELEROMETER, 10240.0f, 1.0f, 0.5f, 10000, 0, 0, 0, 0, 0, 0, {}},
-    {"MPL Magnetic Field", "Invensense", 1,
-     SENSORS_MAGNETIC_FIELD_HANDLE,
-     SENSOR_TYPE_MAGNETIC_FIELD, 10240.0f, 1.0f, 0.5f, 10000, 0, 0, 0, 0, 0, 0, {}},
-    {"MPL Raw Magnetic Field", "Invensense", 1,
-     SENSORS_RAW_MAGNETIC_FIELD_HANDLE,
-     SENSOR_TYPE_MAGNETIC_FIELD_UNCALIBRATED, 10240.0f, 1.0f, 0.5f, 10000, 0, 64, 0, 0, 0, 0, {}},
-    {"MPL Orientation", "Invensense", 1,
-     SENSORS_ORIENTATION_HANDLE,
-     SENSOR_TYPE_ORIENTATION, 360.0f, 1.0f, 9.7f, 10000, 0, 0, 0, 0, 0, 0, {}},
-    {"MPL Rotation Vector", "Invensense", 1,
-     SENSORS_ROTATION_VECTOR_HANDLE,
-     SENSOR_TYPE_ROTATION_VECTOR, 10240.0f, 1.0f, 0.5f, 10000, 0, 0, 0, 0, 0, 0, {}},
-    {"MPL Game Rotation Vector", "Invensense", 1,
-     SENSORS_GAME_ROTATION_VECTOR_HANDLE,
-     SENSOR_TYPE_GAME_ROTATION_VECTOR, 10240.0f, 1.0f, 0.5f, 10000, 0, 42, 0, 0, 0, 0, {}},
-    {"MPL Linear Acceleration", "Invensense", 1,
-     SENSORS_LINEAR_ACCEL_HANDLE,
-     SENSOR_TYPE_LINEAR_ACCELERATION, 10240.0f, 1.0f, 0.5f, 10000, 0, 0, 0, 0, 0, 0, {}},
-    {"MPL Gravity", "Invensense", 1,
-     SENSORS_GRAVITY_HANDLE,
-     SENSOR_TYPE_GRAVITY, 10240.0f, 1.0f, 0.5f, 10000, 0, 0, 0, 0, 0, 0, {}},
-    {"MPL Significant Motion", "Invensense", 1,
-     SENSORS_SIGNIFICANT_MOTION_HANDLE,
-     SENSOR_TYPE_SIGNIFICANT_MOTION, 100.0f, 1.0f, 1.1f, 0, 0, 0, 0, 0, 0, 0, {}},
-#ifdef ENABLE_DMP_SCREEN_AUTO_ROTATION
-    {"MPL Screen Orientation", "Invensense ", 1,
-     SENSORS_SCREEN_ORIENTATION_HANDLE,
-     SENSOR_TYPE_SCREEN_ORIENTATION, 100.0f, 1.0f, 1.1f, 0, 0, 0, 0, 0, 0, 0, {}},
-#endif
+     {"MPL Gyroscope", "Invensense", 1,
+      SENSORS_GYROSCOPE_HANDLE,
+      SENSOR_TYPE_GYROSCOPE, 2000.0f, 1.0f, 0.5f, 10000, 0, 0, "", "", 0, 0, {0, 0},},
+     {"MPL Raw Gyroscope", "Invensense", 1,
+      SENSORS_RAW_GYROSCOPE_HANDLE,
+      SENSOR_TYPE_GYROSCOPE_UNCALIBRATED, 2000.0f, 1.0f, 0.5f, 10000, 0, 0, "", "", 0, 0, {0, 0},},
+     {"MPL Accelerometer", "Invensense", 1,
+      SENSORS_ACCELERATION_HANDLE,
+      SENSOR_TYPE_ACCELEROMETER, 10240.0f, 1.0f, 0.5f, 10000, 0, 0, "", "", 0, 0, {0, 0},},
+     {"MPL Magnetic Field", "Invensense", 1,
+      SENSORS_MAGNETIC_FIELD_HANDLE,
+      SENSOR_TYPE_MAGNETIC_FIELD, 10240.0f, 1.0f, 0.5f, 10000, 0, 0, "", "", 0, 0, {0, 0},},
+     {"MPL Raw Magnetic Field", "Invensense", 1,
+      SENSORS_RAW_MAGNETIC_FIELD_HANDLE,
+      SENSOR_TYPE_MAGNETIC_FIELD_UNCALIBRATED, 10240.0f, 1.0f, 0.5f, 10000, 0, 64, "", "", 0, 0, {0, 0},},
+     {"MPL Orientation", "Invensense", 1,
+      SENSORS_ORIENTATION_HANDLE,
+      SENSOR_TYPE_ORIENTATION, 360.0f, 1.0f, 9.7f, 10000, 0, 0, "", "", 0, 0, {0, 0},},
+     {"MPL Rotation Vector", "Invensense", 1,
+      SENSORS_ROTATION_VECTOR_HANDLE,
+      SENSOR_TYPE_ROTATION_VECTOR, 10240.0f, 1.0f, 0.5f, 10000, 0, 0, "", "", 0, 0, {0, 0},},
+     {"MPL Game Rotation Vector", "Invensense", 1,
+      SENSORS_GAME_ROTATION_VECTOR_HANDLE,
+      SENSOR_TYPE_GAME_ROTATION_VECTOR, 10240.0f, 1.0f, 0.5f, 10000, 0, 42, "", "", 0, 0, {0, 0},},
+     {"MPL Linear Acceleration", "Invensense", 1,
+      SENSORS_LINEAR_ACCEL_HANDLE,
+      SENSOR_TYPE_LINEAR_ACCELERATION, 10240.0f, 1.0f, 0.5f, 10000, 0, 0, "", "", 0, 0, {0, 0},},
+     {"MPL Gravity", "Invensense", 1,
+      SENSORS_GRAVITY_HANDLE,
+      SENSOR_TYPE_GRAVITY, 10240.0f, 1.0f, 0.5f, 10000, 0, 0, "", "", 0, 0, {0, 0},},
+     {"MPL Significant Motion", "Invensense", 1,
+      SENSORS_SIGNIFICANT_MOTION_HANDLE,
+      SENSOR_TYPE_SIGNIFICANT_MOTION, 100.0f, 1.0f, 1.1f, 0, 0, 0, "", "", 0, 0, {0, 0},},
+ #ifdef ENABLE_DMP_SCREEN_AUTO_ROTATION
+     {"MPL Screen Orientation", "Invensense ", 1,
+      SENSORS_SCREEN_ORIENTATION_HANDLE,
+      SENSOR_TYPE_SCREEN_ORIENTATION, 100.0f, 1.0f, 1.1f, 0, 0, 0, "", "", 0, 0, {0, 0},},
+ #endif
 };
 
 MPLSensor *MPLSensor::gMPLSensor = NULL;
@@ -3367,14 +3367,12 @@ int MPLSensor::isCompassDisabled(void)
     return 0;
 }
 
-int MPLSensor::batch(int handle __unused, int flags __unused,
-	int64_t period_ns __unused, int64_t timeout __unused)
+int MPLSensor::batch(int handle, int flags __unused,
+	int64_t period_ns, int64_t timeout __unused)
 {
     VFUNC_LOG;
 
-    LOGE("MPLSensor::batch, shouldn't be called!");
-
-    return -22;
+    return setDelay(handle, period_ns);
 }
 
 int MPLSensor::getDmpSignificantMotionFd()

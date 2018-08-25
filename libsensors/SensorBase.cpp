@@ -20,17 +20,25 @@
 #include <poll.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <stdlib.h>
+#include <string.h>
 #include <sys/select.h>
-#include <pthread.h>
-#include <cstring>
 
 #include <cutils/log.h>
 
+#include <utils/SystemClock.h>
+
 #include <linux/input.h>
+
+#include <cutils/properties.h>
 
 #include "SensorBase.h"
 
 /*****************************************************************************/
+// static vars
+bool SensorBase::PROCESS_VERBOSE = true;
+bool SensorBase::EXTRA_VERBOSE = true;
+bool SensorBase::SYSFS_VERBOSE = true;
 
 SensorBase::SensorBase(
         const char* dev_name,
@@ -84,10 +92,7 @@ bool SensorBase::hasPendingEvents() const {
 }
 
 int64_t SensorBase::getTimestamp() {
-    struct timespec t;
-    t.tv_sec = t.tv_nsec = 0;
-    clock_gettime(CLOCK_BOOTTIME, &t);
-    return int64_t(t.tv_sec)*1000000000LL + t.tv_nsec;
+    return android::elapsedRealtimeNano();
 }
 
 int SensorBase::openInput(const char* inputName) {
@@ -130,10 +135,15 @@ int SensorBase::openInput(const char* inputName) {
     return fd;
 }
 
-int SensorBase::batch(int handle  __unused, int flags  __unused,
-	int64_t period_ns  __unused, int64_t timeout  __unused)
+int SensorBase::enable(int32_t handle __unused, int enabled __unused)
 {
-    return 0;
+    return -EINVAL;
+}
+
+int SensorBase::batch(int handle, int flags  __unused,
+	int64_t period_ns, int64_t timeout  __unused)
+{
+    return setDelay(handle, period_ns);
 }
 
 int SensorBase::flush(int handle  __unused)
